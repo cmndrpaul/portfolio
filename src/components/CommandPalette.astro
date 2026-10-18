@@ -1,0 +1,63 @@
+<div
+    x-show="commandPaletteOpen"
+    x-effect="commandPaletteOpen && $nextTick(() => window.refreshIcons?.())"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    style="display: none;"
+    class="fixed inset-0 z-50 flex items-start justify-center bg-black/70 px-4 pt-24 backdrop-blur-md"
+>
+    <div
+        x-data="{
+            query: '',
+            items: [
+                { title: 'Home / Hero', subtitle: 'Introduction & Tagline', url: '/', icon: 'home', category: 'Navigation' },
+                { title: 'About Me', subtitle: 'Bio, background & passion', url: '/#about', icon: 'user', category: 'Navigation' },
+                { title: 'Work Experience & Timeline', subtitle: 'Career milestones and roles', url: '/#experience', icon: 'briefcase', category: 'Navigation' },
+                { title: 'Tech Stack & Skills', subtitle: 'Frontend, backend, cloud and tools', url: '/#stack', icon: 'cpu', category: 'Navigation' },
+                { title: 'Featured Projects', subtitle: 'Portfolio work', url: '/#projects', icon: 'layers', category: 'Navigation' },
+                { title: 'Certificates & Honors', subtitle: 'Credentials', url: '/certificates/', icon: 'award', category: 'Navigation' },
+                { title: 'Contact / Socials', subtitle: 'Email and social links', url: '/#contact', icon: 'send', category: 'Navigation' },
+            ],
+            get filtered() {
+                if (!this.query.trim()) return this.items;
+                const query = this.query.toLowerCase();
+                return this.items.filter((item) => `${item.title} ${item.subtitle} ${item.category}`.toLowerCase().includes(query));
+            }
+        }"
+        @click.outside="commandPaletteOpen = false"
+        class="w-full max-w-xl overflow-hidden rounded-2xl border border-purple-500/30 bg-slate-900 shadow-2xl shadow-purple-950/60"
+    >
+        <div class="flex items-center gap-3 border-b border-white/10 p-4">
+            <i data-lucide="search" class="h-5 w-5 text-purple-400"></i>
+            <input x-ref="searchInput" x-model="query" type="text" placeholder="Search sections, skills, or navigation..." class="w-full bg-transparent text-sm text-white placeholder-slate-500 focus:outline-none">
+            <kbd class="rounded border border-white/10 bg-white/10 px-2 py-1 font-mono text-[10px] text-slate-400">ESC</kbd>
+        </div>
+        <div class="max-h-[350px] space-y-1 overflow-y-auto p-2">
+            <template x-for="item in filtered" :key="item.title">
+                <a :href="item.url" @click="commandPaletteOpen = false" class="group flex items-center justify-between rounded-xl border border-transparent p-3 transition-all hover:border-purple-500/30 hover:bg-purple-600/20">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-purple-400 group-hover:text-purple-300">
+                            <i :data-lucide="item.icon" class="h-4 w-4"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-semibold text-white group-hover:text-purple-300" x-text="item.title"></div>
+                            <div class="text-[11px] text-slate-400" x-text="item.subtitle"></div>
+                        </div>
+                    </div>
+                    <span class="rounded-full bg-white/5 px-2 py-0.5 font-mono text-[10px] text-slate-400" x-text="item.category"></span>
+                </a>
+            </template>
+            <template x-if="filtered.length === 0">
+                <div class="p-8 text-center text-xs text-slate-400">No results found for "<span class="text-white" x-text="query"></span>".</div>
+            </template>
+        </div>
+        <div class="flex items-center justify-between border-t border-white/10 bg-black/40 p-3 text-[11px] text-slate-400">
+            <span>Navigate with instant search</span>
+            <span class="font-mono">cmndrpaul</span>
+        </div>
+    </div>
+</div>

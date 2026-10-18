@@ -3,16 +3,16 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite"
+        "build": "astro build",
+        "dev": "astro dev --host 0.0.0.0",
+        "preview": "astro preview --host 0.0.0.0"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.3.3",
         "alpinejs": "^3.17.3",
-        "autoprefixer": "^10.6.1",
-        "axios": "^1.11.0",
-        "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^2.1.0",
+        "astro": "^7.4.0",
+        "lucide": "^1.59.0",
+        "simple-icons": "^16.35.0",
         "tailwindcss": "^4.3.3",
         "vite": "^7.3.6"
     }
