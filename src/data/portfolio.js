@@ -82,16 +82,3 @@ export const technologies = [
 ];
 
 export const technologyCategories = [...new Set(technologies.map(({ category }) => category))];
-
-export const partners = [
-    { name: 'QCityBus', tag: 'Public Transit AI' },
-    { name: 'Zion Strategic Solutions', tag: 'Enterprise Consulting' },
-    { name: 'The Medical City', tag: 'Healthcare Tech' },
-    { name: 'Agri Tech Innovate', tag: 'Smart Agriculture' },
-    { name: 'UpaMate', tag: 'PropTech Platform' },
-    { name: 'Agapai', tag: 'Disaster Response' },
-    { name: 'Akwatek', tag: 'IoT Aquaculture' },
-    { name: 'Grupo PCX', tag: 'Logistics Express' },
-    { name: 'LootBX', tag: 'Web3 Studio' },
-    { name: 'RZ Ecommerce', tag: 'Retail Group' },
-];

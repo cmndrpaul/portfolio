@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandIcon from '../components/BrandIcon.astro';
-import { education, experience, partners, resumeUrl, technologies, technologyCategories } from '../data/portfolio.js';
+import { education, experience, resumeUrl, technologies, technologyCategories } from '../data/portfolio.js';
 
-const partnerLoop = [...partners, ...partners];
+const partnerLoop = Array.from({ length: 20 }, () => 'Trusted by Brands');
 ---
 
 <BaseLayout>
@@ -33,11 +33,10 @@ const partnerLoop = [...partners, ...partners];
         </section>
 
         <section class="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-8">
-            <div class="mb-6 text-center"><span class="font-mono text-xs uppercase tracking-widest text-slate-400">Trusted by forward-thinking teams &amp; ventures</span></div>
             <div class="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-24 bg-gradient-to-r from-[var(--bg-main)] to-transparent"></div>
             <div class="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-24 bg-gradient-to-l from-[var(--bg-main)] to-transparent"></div>
             <div class="flex overflow-hidden"><div class="animate-marquee flex items-center gap-8 py-2">
-                {partnerLoop.map((partner) => <div class="flex items-center gap-3 whitespace-nowrap rounded-xl border border-white/10 bg-white/5 px-6 py-3"><span class="h-2 w-2 rounded-full bg-purple-400"></span><span class="text-sm font-semibold text-white">{partner.name}</span><span class="rounded border border-purple-800/40 bg-purple-950/60 px-2 py-0.5 font-mono text-[10px] text-purple-300">{partner.tag}</span></div>)}
+                {partnerLoop.map((placeholder) => <div class="flex items-center justify-center whitespace-nowrap rounded-xl border border-white/10 bg-white/5 px-6 py-3"><span class="text-sm font-semibold text-white">{placeholder}</span></div>)}
             </div></div>
         </section>
 
