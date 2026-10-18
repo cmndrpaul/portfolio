@@ -13,7 +13,8 @@ const {
 <html lang="en" data-theme="purple">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="color-scheme" content="light dark">
         <meta name="description" content={description}>
         <meta name="theme-color" content="#130a21">
         <title>{title}</title>
@@ -21,42 +22,56 @@ const {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     </head>
-    <body x-data="portfolioApp()" class="relative flex min-h-screen flex-col overflow-x-hidden antialiased transition-colors duration-300">
-        <div class="pointer-events-none fixed left-1/2 top-0 -z-10 h-[400px] w-[1000px] -translate-x-1/2 rounded-full bg-purple-600/10 blur-[130px]"></div>
-        <div class="pointer-events-none fixed right-[-10%] top-[40%] -z-10 h-[500px] w-[500px] rounded-full bg-cyan-600/10 blur-[140px]"></div>
+    <body x-data="portfolioApp()" class="portfolio-body relative flex flex-col overflow-x-clip antialiased transition-colors duration-300">
+        <div class="pointer-events-none fixed left-1/2 top-0 -z-10 h-[min(25rem,70dvh)] w-[min(62.5rem,100vw)] -translate-x-1/2 rounded-full bg-purple-600/10 blur-[130px]"></div>
+        <div class="pointer-events-none fixed right-[-10%] top-[40%] -z-10 h-[min(31.25rem,70dvh)] w-[min(31.25rem,100vw)] rounded-full bg-cyan-600/10 blur-[140px]"></div>
 
         <div class="pointer-events-none fixed left-0 top-0 z-50 h-[3px] w-full" aria-hidden="true">
             <div class="h-full rounded-r-full bg-[var(--accent)] shadow-[0_0_10px_var(--accent-glow)] transition-[width] duration-75" :style="'width: ' + scrollProgress + '%' "></div>
         </div>
 
-        <header :class="scrolled ? 'bg-black/60 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20' : 'bg-transparent border-b border-transparent'" class="fixed left-0 right-0 top-0 z-40 px-4 py-4 transition-all duration-300 sm:px-8">
-            <div class="mx-auto flex max-w-6xl items-center justify-between">
-                <a href="/" class="group flex items-center gap-2">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 text-lg font-bold text-white shadow-lg shadow-purple-500/30 transition-transform group-hover:scale-105">c</span>
-                    <span class="text-lg font-bold tracking-tight text-white transition-colors group-hover:text-purple-400">cmndr<span class="text-purple-400">paul</span></span>
+        <header :class="scrolled ? 'bg-black/60 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20' : 'bg-transparent border-b border-transparent'" class="fixed left-0 right-0 top-0 z-40 px-3 py-3 transition-all duration-300 sm:px-8 sm:py-4">
+            <div class="mx-auto flex min-h-11 max-w-6xl items-center justify-between gap-2">
+                <a href="/" class="group flex min-h-11 min-w-0 items-center gap-2">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-500 text-lg font-bold text-white shadow-lg shadow-purple-500/30 transition-transform group-hover:scale-105 sm:h-9 sm:w-9">c</span>
+                    <span class="text-base font-bold tracking-tight text-white transition-colors group-hover:text-purple-400 sm:text-lg">cmndr<span class="text-purple-400">paul</span></span>
                 </a>
 
-                <nav class="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-lg md:flex" aria-label="Main navigation">
-                    <a href="/#about" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">About</a>
-                    <a href="/#experience" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Experience</a>
-                    <a href="/#stack" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Stack</a>
-                    <a href="/projects/" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Projects</a>
-                    <a href="/certificates/" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Certificates</a>
-                    <a href="/#contact" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Contact</a>
+                <nav class="hidden items-center gap-0.5 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-lg lg:flex" aria-label="Main navigation">
+                    <a href="/#about" class="flex min-h-11 items-center rounded-full px-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">About</a>
+                    <a href="/#experience" class="flex min-h-11 items-center rounded-full px-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Experience</a>
+                    <a href="/#stack" class="flex min-h-11 items-center rounded-full px-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Stack</a>
+                    <a href="/projects/" class="flex min-h-11 items-center rounded-full px-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Projects</a>
+                    <a href="/certificates/" class="flex min-h-11 items-center rounded-full px-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Certificates</a>
+                    <a href="/#contact" class="flex min-h-11 items-center rounded-full px-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white">Contact</a>
                 </nav>
 
                 <div class="flex items-center gap-2 sm:gap-3">
-                    <button @click="toggleTheme()" type="button" title="Toggle Theme (Purple / Dark / Light)" aria-label="Toggle color theme" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-purple-400 transition-all hover:border-purple-500/40 hover:bg-white/10">
+                    <button @click="toggleTheme()" type="button" title="Toggle Theme (Purple / Dark / Light)" aria-label="Toggle color theme" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-purple-400 transition-all hover:border-purple-500/40 hover:bg-white/10">
                         <i data-lucide="sparkles" class="h-4 w-4"></i>
                     </button>
-                    <a href="https://drive.google.com/file/d/17jZtoe9SSTAq-YNw4L4DoMPFIY50V2NA/view" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2 text-xs font-medium text-white shadow-lg shadow-purple-600/25 transition-all hover:-translate-y-0.5 hover:from-purple-500 hover:to-indigo-500 sm:inline-flex">
+                    <a href="https://drive.google.com/file/d/17jZtoe9SSTAq-YNw4L4DoMPFIY50V2NA/view" target="_blank" rel="noopener noreferrer" class="hidden min-h-11 items-center gap-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 px-4 text-xs font-medium text-white shadow-lg shadow-purple-600/25 transition-all hover:-translate-y-0.5 hover:from-purple-500 hover:to-indigo-500 sm:inline-flex">
                         <i data-lucide="file-text" class="h-3.5 w-3.5"></i><span>CV</span>
                     </a>
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-navigation" :aria-label="mobileMenuOpen ? 'Close navigation' : 'Open navigation'" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-200 transition-colors hover:border-purple-500/40 hover:bg-white/10 lg:hidden">
+                        <i data-lucide="menu" x-show="!mobileMenuOpen" class="h-5 w-5"></i>
+                        <i data-lucide="x" x-show="mobileMenuOpen" class="h-5 w-5"></i>
+                    </button>
                 </div>
             </div>
+            <nav id="mobile-navigation" x-show="mobileMenuOpen" x-transition class="mx-auto mt-2 max-h-[calc(100dvh-6rem)] max-w-6xl space-y-1 overflow-y-auto rounded-2xl border border-white/10 bg-slate-950/95 p-2 shadow-xl shadow-black/30 backdrop-blur-lg lg:hidden" aria-label="Mobile navigation" style="display: none;">
+                <a @click="mobileMenuOpen = false" href="/#about" class="flex min-h-11 items-center rounded-xl px-4 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10">About</a>
+                <a @click="mobileMenuOpen = false" href="/#experience" class="flex min-h-11 items-center rounded-xl px-4 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10">Experience</a>
+                <a @click="mobileMenuOpen = false" href="/#stack" class="flex min-h-11 items-center rounded-xl px-4 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10">Skills &amp; Technologies</a>
+                <a @click="mobileMenuOpen = false" href="/projects/" class="flex min-h-11 items-center rounded-xl px-4 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10">Projects</a>
+                <a @click="mobileMenuOpen = false" href="/certificates/" class="flex min-h-11 items-center rounded-xl px-4 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10">Certificates</a>
+                <a @click="mobileMenuOpen = false" href="/#contact" class="flex min-h-11 items-center rounded-xl px-4 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10">Contact</a>
+                <button @click="mobileMenuOpen = false; commandPaletteOpen = true" type="button" class="flex min-h-11 w-full items-center gap-2 rounded-xl px-4 text-left text-sm font-medium text-slate-200 transition-colors hover:bg-white/10"><i data-lucide="search" class="h-4 w-4"></i>Search site</button>
+                <a href="https://drive.google.com/file/d/17jZtoe9SSTAq-YNw4L4DoMPFIY50V2NA/view" target="_blank" rel="noopener noreferrer" class="flex min-h-11 items-center gap-2 rounded-xl bg-purple-600 px-4 text-sm font-semibold text-white"><i data-lucide="file-text" class="h-4 w-4"></i>View Resume</a>
+            </nav>
         </header>
 
-        <main class="flex-grow pt-24">
+        <main class="flex-grow pt-20 sm:pt-24">
             <slot />
         </main>
 
@@ -70,18 +85,18 @@ const {
                     <span class="hidden text-slate-600 sm:inline">•</span>
                     <p class="text-xs text-slate-400">© {new Date().getFullYear()} JOHN PAUL GONZAGA</p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <a href="https://github.com/cmndrpaul" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="GitHub"><BrandIcon name="github" class="h-4 w-4" /></a>
-                    <a href="https://www.linkedin.com/in/john-paul-gonzaga-562587284/" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="LinkedIn"><BrandIcon name="linkedin" class="h-4 w-4" /></a>
-                    <a href="https://www.facebook.com/cmndr.jp/" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="Facebook"><BrandIcon name="facebook" class="h-4 w-4" /></a>
-                    <a href="https://www.tiktok.com/@cmndr_jp" target="_blank" rel="noopener noreferrer" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="TikTok"><BrandIcon name="tiktok" class="h-4 w-4" /></a>
-                    <a href="mailto:cmndr.johnpaulgonzaga@gmail.com" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="Email"><i data-lucide="mail" class="h-4 w-4"></i></a>
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                    <a href="https://github.com/cmndrpaul" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="GitHub"><BrandIcon name="github" class="h-4 w-4" /></a>
+                    <a href="https://www.linkedin.com/in/john-paul-gonzaga-562587284/" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="LinkedIn"><BrandIcon name="linkedin" class="h-4 w-4" /></a>
+                    <a href="https://www.facebook.com/cmndr.jp/" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="Facebook"><BrandIcon name="facebook" class="h-4 w-4" /></a>
+                    <a href="https://www.tiktok.com/@cmndr_jp" target="_blank" rel="noopener noreferrer" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="TikTok"><BrandIcon name="tiktok" class="h-4 w-4" /></a>
+                    <a href="mailto:cmndr.johnpaulgonzaga@gmail.com" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white" title="Email"><i data-lucide="mail" class="h-4 w-4"></i></a>
                 </div>
             </div>
         </footer>
 
         <div class="fixed bottom-5 right-5 z-30 hidden sm:block">
-            <button type="button" @click="commandPaletteOpen = true" aria-label="Open command menu" title="Search site (Ctrl+K)" class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-slate-900/90 text-slate-300 shadow-lg backdrop-blur transition-colors hover:border-purple-500/40 hover:text-white">
+            <button type="button" @click="commandPaletteOpen = true" aria-label="Open command menu" title="Search site (Ctrl+K)" class="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-slate-900/90 text-slate-300 shadow-lg backdrop-blur transition-colors hover:border-purple-500/40 hover:text-white">
                 <i data-lucide="command" class="h-4 w-4"></i>
             </button>
         </div>

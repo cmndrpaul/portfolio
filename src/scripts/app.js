@@ -16,13 +16,23 @@ import {
     Home,
     Layers,
     Mail,
+    Menu,
     Music2,
     Search,
     Send,
     Sparkles,
     UserRound,
+    X,
     createIcons,
 } from 'lucide';
+
+const readStoredTheme = () => {
+    try {
+        return localStorage.getItem('cmndrpaul_theme') || 'purple';
+    } catch {
+        return 'purple';
+    }
+};
 
 window.Alpine = Alpine;
 
@@ -43,11 +53,13 @@ const iconSet = {
     Home,
     Layers,
     Mail,
+    Menu,
     Music2,
     Search,
     Send,
     Sparkles,
     UserRound,
+    X,
 };
 
 const iconAliases = {
@@ -56,8 +68,9 @@ const iconAliases = {
 };
 
 Alpine.data('portfolioApp', () => ({
-    theme: localStorage.getItem('cmndrpaul_theme') || 'purple',
+    theme: readStoredTheme(),
     commandPaletteOpen: false,
+    mobileMenuOpen: false,
     scrolled: false,
     scrollProgress: 0,
 
@@ -70,8 +83,14 @@ Alpine.data('portfolioApp', () => ({
                 event.preventDefault();
                 this.commandPaletteOpen = !this.commandPaletteOpen;
             }
-            if (event.key === 'Escape') this.commandPaletteOpen = false;
+            if (event.key === 'Escape') {
+                this.commandPaletteOpen = false;
+                this.mobileMenuOpen = false;
+            }
         });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) this.mobileMenuOpen = false;
+        }, { passive: true });
     },
 
     updateScroll() {
@@ -83,7 +102,11 @@ Alpine.data('portfolioApp', () => ({
 
     toggleTheme() {
         this.theme = this.theme === 'purple' ? 'dark' : this.theme === 'dark' ? 'light' : 'purple';
-        localStorage.setItem('cmndrpaul_theme', this.theme);
+        try {
+            localStorage.setItem('cmndrpaul_theme', this.theme);
+        } catch {
+            // Theme still applies for this page view when storage is unavailable.
+        }
         this.applyTheme(this.theme);
     },
 
